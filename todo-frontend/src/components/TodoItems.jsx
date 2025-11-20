@@ -7,7 +7,8 @@ const TodoItems = ({ todoItems, onDeleteClick, onToggleComplete }) => {
         {todoItems.length > 0 ? (
           <>
             <p className="text-gray-600 text-sm font-medium mb-4">
-              {todoItems.length} {todoItems.length === 1 ? 'task' : 'tasks'} pending
+             {todoItems.filter(item => !item.isCompleted).length} 
+            {todoItems.filter(item => !item.isCompleted).length === 1 ? "Task" : "Tasks"} pending
             </p>
             {todoItems.map((item) => (
               <TodoItem
