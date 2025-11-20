@@ -1,5 +1,4 @@
-const Todoitem = require("../models/Todoitem");
-const TodoItem =require("../models/Todoitem")
+const TodoItem = require("../models/Todoitem")
 
 exports.createTodoItem = async (req,res,next)=>{
   
@@ -41,8 +40,8 @@ exports. getToDoItems =async(req,res,next)=>{
 }
 
 exports. deleteTodoItem = async(req,res,next)=>{
-  const {id} = req.parms;
-  await Todoitem.findByIdAndDelete(id);
+  const {id} = req.params;
+  await TodoItem.findByIdAndDelete(id);
   res.status(204).json({_id:id});
 }
 
