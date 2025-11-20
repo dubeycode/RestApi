@@ -2,7 +2,7 @@ import AppName from "./components/AppName";
 import AddTodo from "./components/AddTodo";
 import TodoItems from "./components/TodoItems";
 import WelcomeMessage from "./components/WelcomeMessage";
-import { addItemToServer, deleteItemFromServer, getItemsFromServer } from "../services/itemsService";
+import { addItemToServer, deleteItemFromServer, getItemsFromServer, markItemCompletedOnServer } from "../services/itemsService";
 import "./App.css";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -34,6 +34,14 @@ function App() {
     setTodoItems(newTodoItems);
   };
 
+  const handleToggleComplete = async (id) => {
+    const updatedTodoItems = todoItems.map((item) =>
+      item.id === id ? { ...item, isCompleted: !item.isCompleted } : item
+    );
+    setTodoItems(updatedTodoItems);
+    await markItemCompletedOnServer(id);
+  };
+
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
       <AppName />
@@ -44,6 +52,7 @@ function App() {
         <TodoItems
           todoItems={todoItems}
           onDeleteClick={handleDeleteItem}
+          onToggleComplete={handleToggleComplete}
         />
       )}
     </div>

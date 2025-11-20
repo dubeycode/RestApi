@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem";
 
-const TodoItems = ({ todoItems, onDeleteClick }) => {
+const TodoItems = ({ todoItems, onDeleteClick, onToggleComplete }) => {
   return (
     <div className="w-full max-w-2xl mx-auto px-4 sm:px-6 pb-8">
       <div className="space-y-3">
@@ -16,6 +16,8 @@ const TodoItems = ({ todoItems, onDeleteClick }) => {
                 todoDate={item.dueDate}
                 todoName={item.name}
                 onDeleteClick={onDeleteClick}
+                isCompleted={item.isCompleted}
+                onToggleComplete={onToggleComplete}
               ></TodoItem>
             ))}
           </>

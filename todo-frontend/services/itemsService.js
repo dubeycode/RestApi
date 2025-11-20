@@ -28,7 +28,7 @@ export async function getItemsFromServer() {
 
 export const markItemCompletedOnServer =async (id)=>{
   const response =await fetch(`http://localhost:3000/api/todo/${id}/completed`,{
-    method:"PUT",
+    method:"PUT", 
   });
   const item =await response.json();
   return mapserverItemToLocalItem(item)
@@ -49,7 +49,7 @@ function mapserverItemToLocalItem(item) {
     id: item._id,
     name: item.task,
     dueDate: item.date,
-    completed: item.completed,
+    isCompleted: item.completed,
   };
 }
 
