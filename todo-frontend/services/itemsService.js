@@ -19,6 +19,7 @@ export async function addItemToServer(task, dueDate) {
 }
 
 
+
 export async function getItemsFromServer() {
   const response =await fetch("http://localhost:3000/api/todo");
   const items =await response.json();
@@ -34,6 +35,7 @@ export const markItemCompletedOnServer =async (id)=>{
   return mapserverItemToLocalItem(item)
 }
 
+
 export const deleteItemFromServer = async(id)=>{
  const response = await fetch(`http://localhost:3000/api/todo/${id}`,{
     method:"DELETE",
@@ -43,6 +45,7 @@ export const deleteItemFromServer = async(id)=>{
   }
   return id;
 }
+
 
 function mapserverItemToLocalItem(item) {
   return {

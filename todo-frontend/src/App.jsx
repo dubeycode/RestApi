@@ -7,16 +7,17 @@ import "./App.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
+
+
 function App() {
   const [todoItems, setTodoItems] = useState([]);
-
   useEffect(()=>{
   getItemsFromServer().then(initialItems=>{
     setTodoItems(initialItems);
   });
   },[]);
 
-
+// handle new items
   const handleNewItem = async (itemName, itemDueDate) => {
     console.log(`New Item Added: ${itemName} Date:${itemDueDate}`);
 
@@ -28,12 +29,14 @@ function App() {
     setTodoItems(newTodoItems); 
   };
 
+// handle delete
   const handleDeleteItem = async(id) => {
     const deletedId = await deleteItemFromServer(id);
     const newTodoItems = todoItems.filter((item) => item.id !==deletedId );
     setTodoItems(newTodoItems);
   };
 
+// handle complet 
   const handleToggleComplete = async (id) => {
     const updatedTodoItems = todoItems.map((item) =>
       item.id === id ? { ...item, isCompleted: !item.isCompleted } : item
@@ -41,6 +44,7 @@ function App() {
     setTodoItems(updatedTodoItems);
     await markItemCompletedOnServer(id);
   };
+
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
